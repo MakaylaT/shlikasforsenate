@@ -1,0 +1,31 @@
+<% if (post.original != false && !is_page()){ %>
+    <div class="copyright">
+        <p><span>Title:</span><a href="<%- url_for(post.path) %>"><%= post.title %></a></p>
+        <p><span>Author:</span><%=theme.author%></p>
+        <p><span>Posted on:</span><%= post.date.format("DD-MM-YYYY") %></p>
+        <p><span>Latest update:</span><%= post.updated.format("DD-MM-YYYY") %></p>
+    </div>
+<% } %>
+
+<% if (post.prev || post.next){ %>
+<nav id="article-nav">
+  <% if (post.prev){ %>
+    <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        <% if (post.prev.title){ %>
+          <%= post.prev.title %>
+        <% } else { %>
+          (no title)
+        <% } %>
+      </div>
+    </a>
+  <% } %>
+  <% if (post.next){ %>
+    <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><%= post.next.title %></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  <% } %>
+</nav>
+<% } %>
